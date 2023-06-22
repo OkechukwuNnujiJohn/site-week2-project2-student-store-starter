@@ -1,0 +1,20 @@
+.homeBld{
+    position: relative;
+    right: -500px;
+    height: 100px;
+    width: 100px;
+  }
+
+.welcome{
+    flex:1;
+    padding: 40px;
+    display: flex;
+    flex-direction:column;
+    background-color: greenyellow;
+    justify-content: center;
+    height: 350px;
+}
+
+.welcomeIntro p{
+    width: 60%;
+}

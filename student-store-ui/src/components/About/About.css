@@ -1,0 +1,25 @@
+.Header{
+    margin-top: 9rem;
+}
+
+
+.aboutSection{
+    width: 100%;
+    display: flex;
+}
+
+.aboutText{
+    display: flex;
+    justify-content: center;
+}
+
+.aboutLogo{
+    justify-content: center;
+    display: flex;
+    flex:1;
+}
+
+.logo{
+    width: 150px;
+    height: 150px
+}

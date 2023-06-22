@@ -1,0 +1,42 @@
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  /* background-color: green; */
+  /* padding-right: 10%; */
+  /* max-width: 1100px; */
+}
+.logo {
+    height: 70px;
+  }
+  
+/* .a{
+padding-right: 30%
+} */
+.navbar-icons{
+  margin-top: 30px;
+  margin-left: 100px;
+  position: relative;
+  display: flex;
+  right: 100px;
+  gap: 30px;
+}
+
+
+.navbar-links{
+  position: right;
+  margin-top: 30px;
+  margin-right: 8rem;
+  display: flex;
+  /* right: 100px; */
+  gap: 100px;
+}
+
+.NavbarLogo{
+  display: flex;
+}
+
+.logo{
+  width: auto;
+  height: auto;
+}
+  

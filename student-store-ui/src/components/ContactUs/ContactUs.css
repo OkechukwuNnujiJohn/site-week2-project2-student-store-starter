@@ -1,0 +1,43 @@
+.contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-image {
+    margin-right: 20px;
+  }
+  
+  .contact-image img {
+    max-width: 200px;
+  }
+  
+  .contact-details {
+    text-align: left;
+  }
+  
+  .contact-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-details p {
+    margin-bottom: 5px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-icon {
+    font-size: 24px;
+  }
+  
