@@ -1,18 +1,19 @@
+import React from 'react';
 import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi"
 import "./ProductCard.css"
 
-const ProductCard = (props) => {
+const ProductCard = ({ product }) => {
   return (
-    <div key={props.id} className="product-item">
-        <img src={props.image}alt={prod.name} />
+    <div key={product.id} className="product-item">
+        <img src={product.image} alt={product.name} />
         <div className="product-name-count">
-            <h3>{props.name}</h3>
+            <p>{product.name}</p>
             <div>
-                <HiOutlinePlus className="sign plus"/>
-                <HiOutlineMinus className="sign minus" />
+                <HiOutlinePlus className="sign plus" onClick = {()=>removeFromCart(product.id)}/>
+                <HiOutlineMinus className="sign minus" onClick = {() => addToCart(product)}/>
             </div>
         </div>
-            <p className="product-price">{formatPrice(props.price)}</p>
+            <p className="product-price">{formatPrice(product.price)}</p>
             <div className="stars">
                 <img src="/stars.png" alt="stars" />
             </div>

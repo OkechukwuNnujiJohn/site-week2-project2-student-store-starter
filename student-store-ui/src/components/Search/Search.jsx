@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBar = () => {
+const SearchBar = ({ handleSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleInputChange = (event) => {
@@ -11,6 +11,7 @@ const SearchBar = () => {
     event.preventDefault();
     // Perform the search operation here
     console.log('Search query:', searchQuery);
+    handleSearch(searchQuery); 
   };
 
   return (

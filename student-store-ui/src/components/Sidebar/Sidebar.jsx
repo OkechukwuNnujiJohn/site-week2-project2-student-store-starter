@@ -4,31 +4,23 @@ import {BsCart4, BsX, BsList} from "react-icons/bs";
 import "./Sidebar.css"
 import { FaBars, FaTimes } from "react-icons/fa";
 
-export default function Sidebar({
-  isOpen,
-  handleOnToggle,
-}) {
+// import React from "react";
+// ...
 
-  console.log(isOpen);
-
-  // const sidebarWidth = isOpen ? "wider-than-350px" : "not-wider-than-150px";
-
-  const toggleSidebar = () => {
-    handleOnToggle(!isOpen);
+const Sidebar = ({ setSelectedCategory }) => {
+  const handleCategoryClick = category => {
+    setSelectedCategory(category);
   };
 
   return (
-    <section className={`sidebar ${isOpen ? "open" : ""}`}>
-      <button className="toggle-button" onClick={toggleSidebar}>
-      {isOpen ? <FaTimes /> : <FaBars />}
-        {/* <FaBars/> */}
-      </button>
-      {/* <RiMenu4Line /> */}
-      {isOpen && (
-        <>
-          <BsCart4 />
-        </>
-      )}
-    </section>
+    <div className="sidebar">
+      <button onClick={() => handleCategoryClick("clothing")}>Clothing</button>
+      <button onClick={() => handleCategoryClick("food")}>Food</button>
+      <button onClick={() => handleCategoryClick("accessories")}>Accessories</button>
+      <button onClick={() => handleCategoryClick("tech")}>Tech</button>
+    </div>
   );
-}
+};
+
+export default Sidebar;
+
