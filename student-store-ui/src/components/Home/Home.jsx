@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer"
 import About from "../About/About"
 import ContactUs from "../ContactUs/ContactUs"
 import ProductGrid from "../ProductGrid/ProductGrid";
-import Sidebar from "../Sidebar/Sidebar"
+import MiddleBar from "../MiddleBar/MiddleBar"
 
 
 import "./Home.css"
@@ -45,7 +45,7 @@ export default function Home(props) {
         <HelpLink/>
         <CartButton/>
         </div>
-        <Sidebar setSelectedCategory={setSelectedCategory} />
+        <MiddleBar setSelectedCategory={setSelectedCategory} />
       <div className="gridSection">
     
       

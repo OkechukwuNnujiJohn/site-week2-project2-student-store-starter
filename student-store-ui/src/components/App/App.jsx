@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from 'react-router-dom'
 import Navbar from "../Navbar/Navbar"
-import Sidebar from "../Sidebar/Sidebar"
+// import Sidebar from "../Sidebar/Sidebar"
 import Home from "../Home/Home"
 import Product from "../Product/Product"
 import "./App.css"
@@ -33,7 +33,7 @@ export default function App() {
       <BrowserRouter>
         <main>
           <Navbar />
-          <Sidebar isOpen={isOpen} handleOnToggle={handleOnToggle} />
+          {/* <Sidebar isOpen={isOpen} handleOnToggle={handleOnToggle} /> */}
           <Home data={data} /> {/* Pass the fetched data to the Home component */}
         </main>
       </BrowserRouter>
