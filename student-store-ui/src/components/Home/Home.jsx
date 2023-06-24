@@ -8,7 +8,8 @@ import About from "../About/About"
 import ContactUs from "../ContactUs/ContactUs"
 import ProductGrid from "../ProductGrid/ProductGrid";
 import MiddleBar from "../MiddleBar/MiddleBar"
-
+import ProductDetail from "../ProductDetail/ProductDetail";
+import { useParams } from 'react-router-dom';
 
 import "./Home.css"
 
@@ -20,7 +21,10 @@ export default function Home(props) {
   const [searchResults, setSearchResults] = useState(null);
 
   console.log(props);
-
+  const productId = parseInt(useParams().id);
+  console.log("id: ",typeof productId);
+  const product = props.data?.products.find((product) => product.id === productId )
+  console.log("product",product)
   // Handle search
   const handleSearch = (searchQuery) => {
     // Filter products based on the search query
@@ -36,6 +40,7 @@ export default function Home(props) {
   //   { id: 2, name: "Product 2", price: 19.99, description: "Product 2 description" },
   //   { id: 3, name: "Product 3", price: 29.99, description: "Product 3 description" },
   // ];
+
   return (
     <div className="home">
       <Welcome />
@@ -48,9 +53,12 @@ export default function Home(props) {
         <MiddleBar setSelectedCategory={setSelectedCategory} />
       <div className="gridSection">
     
-      
+      {/* if there's no id*/}
+      {!productId ?
         <ProductGrid products={searchResults || props.data?.products} selectedCategory={selectedCategory}/>
-        
+      : <ProductDetail product={product} />
+      }
+      {/* <ProductDetails product={product} /> */}
       </div>
      
     

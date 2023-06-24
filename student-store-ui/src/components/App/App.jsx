@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from "../Navbar/Navbar"
 // import Sidebar from "../Sidebar/Sidebar"
 import Home from "../Home/Home"
-import Product from "../Product/Product"
 import "./App.css"
 
 
@@ -30,13 +29,16 @@ export default function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <Router>
         <main>
           <Navbar />
-          {/* <Sidebar isOpen={isOpen} handleOnToggle={handleOnToggle} /> */}
-          <Home data={data} /> {/* Pass the fetched data to the Home component */}
+          <Routes>
+          <Route exact path="/" element={<Home data={data} />} />
+          <Route path="/products/:id" element={<Home data={data} />} />
+          {/* Add other routes as needed */}
+        </Routes>
         </main>
-      </BrowserRouter>
+      </Router>
     </div>
   )
 }

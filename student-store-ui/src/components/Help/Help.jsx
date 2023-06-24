@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
 const HelpLink = ({ url, text }) => {
   return (
     <div>
-      <a href={url} target="_blank" rel="noopener noreferrer">
+      <Link to={url}>
         {text}Help
         <AiOutlineQuestionCircle style={{ marginLeft: '5px' }} />
-      </a>
+      </Link>
     </div>
   );
 };

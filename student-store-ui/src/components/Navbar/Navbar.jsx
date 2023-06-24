@@ -1,5 +1,5 @@
 import * as React from "react"
-import { RiMenu4Line, RiCloseLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import "./Navbar.css"
 import logo from './logo.png';
 import { FaTwitter, FaInstagram, FaBars } from 'react-icons/fa';
@@ -21,18 +21,18 @@ export default function Navbar({isOpen, handleMenuToggle}) {
         <BsMeta />
       </div>
       <div className="navbar-links">
-        <a href="#" className="navbar-link">
+      <Link to="/" className="navbar-link">
           Home
-        </a>
-        <a href="#" className="navbar-link">
+        </Link>
+        <Link to="/about" className="navbar-link">
           About Us
-        </a>
-        <a href="#" className="navbar-link">
+        </Link>
+        <Link to="/contact" className="navbar-link">
           Contact Us
-        </a>
-        <a href="#" className="navbar-link">
+        </Link>
+        <Link to="/buy" className="navbar-link">
           Buy Now
-        </a>
+        </Link>
       </div>
     </nav>
   )
