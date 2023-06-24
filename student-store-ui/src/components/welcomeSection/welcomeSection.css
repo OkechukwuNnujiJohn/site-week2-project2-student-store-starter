@@ -1,20 +1,29 @@
 .homeBld{
-    position: relative;
-    right: -500px;
-    height: 100px;
-    width: 100px;
+    width: 125px;
+	height: 125px;
+	/* margin-top: 20px; */
+    margin-right: 3rem;
   }
 
 .welcome{
-    flex:1;
-    padding: 40px;
-    display: flex;
-    flex-direction:column;
-    background-color: greenyellow;
-    justify-content: center;
-    height: 350px;
+    width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* background-color: #02c385; */
+	padding: 2rem 3rem;
+    padding-right: 9rem;
+	/* color: white; */
 }
 
-.welcomeIntro p{
-    width: 60%;
+.welcomeIntro{
+    font-size: 4rem;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+p{
+    max-width: 60ch;
+	font-size: 20px;
+	line-height: 1.5;
 }

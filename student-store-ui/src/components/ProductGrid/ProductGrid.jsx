@@ -8,6 +8,9 @@ const ProductGrid = ({ products,selectedCategory }) => {
     ? products.filter((product) => product.category === selectedCategory)
     : products;
   return (
+    <>
+    
+    <h3 className='product-header'>Best Selling Products</h3>
     <div className="product-grid">
       {filteredProducts ? (
         filteredProducts.map((product )=> (
@@ -26,6 +29,7 @@ const ProductGrid = ({ products,selectedCategory }) => {
         <p>Loading...</p>
       )}
     </div>
+    </>
   );
 };
 

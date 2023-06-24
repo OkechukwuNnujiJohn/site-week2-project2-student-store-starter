@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from "../Navbar/Navbar"
-// import Sidebar from "../Sidebar/Sidebar"
+import Sidebar from "../Sidebar/Sidebar"
 import Home from "../Home/Home"
 import "./App.css"
 
@@ -32,6 +32,7 @@ export default function App() {
       <Router>
         <main>
           <Navbar />
+          <Sidebar />
           <Routes>
           <Route exact path="/" element={<Home data={data} />} />
           <Route path="/products/:id" element={<Home data={data} />} />

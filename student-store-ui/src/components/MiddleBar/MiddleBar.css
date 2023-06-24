@@ -1,25 +1,17 @@
-/* .sidebar {
-    width: 100px;
-    transition: width 0.3s ease-in-out;
-    overflow: hidden;
-    color: white;
-    height: 100%;
-    background-color: green;
-  }
+.middlebar{
+  position: relative;
+  align-items: center;
+  /* right: 0; */
+  width: 100%;
+  background-color: whitesmoke;
   
-  .sidebar.open {
-    width: 350px;
-  }
-  
-  .toggle-button {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .sidebar.open .toggle-button {
-    transform: translateX(350px);
-  }
-  
+  border-radius: 5px;
+  padding-left: 450px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  /* z-index: 100000; */
+}
 
-.Fbars {
-  width: 200px;
+/* button{
+  padding-top: 100px;
+  height: 10px;
 } */

@@ -23,6 +23,7 @@ export default function ContactUs () {
           </div>
         </div>
       </div>
+      <img className="contact-img" src="https://codepath-student-store-demo.surge.sh/assets/happy_person.517b658d.svg" alt="happy person" />
     </div>
   );
 };

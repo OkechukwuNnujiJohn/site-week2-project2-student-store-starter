@@ -1,0 +1,13 @@
+.row{
+    display:flex;
+    width:50px;
+
+}
+.button-card{
+    border-radius: 5px;
+    border-color: green;
+  } 
+.incrementBtn{
+    color:black;
+    text-align: center
+  }
