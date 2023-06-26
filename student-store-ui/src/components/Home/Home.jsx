@@ -1,82 +1,70 @@
 import React, { useState } from "react";
-import Welcome from "../welcomeSection/welcomeSection";
-import SearchBar from "../Search/Search";
-import HelpLink from "../Help/Help";
-import CartButton from "../ShoppingCart/ShoppingCart";
-import Footer from "../Footer/Footer";
-import About from "../About/About";
-import ContactUs from "../ContactUs/ContactUs";
+import Welcome from "../welcomeSection/welcomeSection"
+import SearchBar from "../Search/Search"
+import HelpLink from "../Help/Help"
+import CartButton from "../ShoppingCart/ShoppingCart"
+import Footer from "../Footer/Footer"
+import About from "../About/About"
+import ContactUs from "../ContactUs/ContactUs"
 import ProductGrid from "../ProductGrid/ProductGrid";
-import MiddleBar from "../MiddleBar/MiddleBar";
+import MiddleBar from "../MiddleBar/MiddleBar"
 import ProductDetail from "../ProductDetail/ProductDetail";
-import { useParams } from "react-router-dom";
-// import SidebarCart from "../ShoppingCart/ShoppingCart";
+import { useParams } from 'react-router-dom';
 
-import "./Home.css";
+import "./Home.css"
+
+
 
 export default function Home(props) {
+
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchResults, setSearchResults] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
 
+  console.log(props);
   const productId = parseInt(useParams().id);
-  const product = props.data?.products.find((product) => product.id === productId);
-
+  console.log("id: ",typeof productId);
+  const product = props.data?.products.find((product) => product.id === productId )
+  console.log("product",product)
+  // Handle search
   const handleSearch = (searchQuery) => {
+    // Filter products based on the search query
     const results = props.data?.products.filter((product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setSearchResults(results);
   };
 
-  const addToCart = (product) => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
-
-    if (existingItem) {
-      // If the item already exists in the cart, update the quantity
-      const updatedItems = cartItems.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
-      setCartItems(updatedItems);
-    } else {
-      // If the item doesn't exist, add it to the cart with quantity 1
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-  };
-
-  const removeFromCart = (productId) => {
-    const updatedItems = cartItems.filter((item) => item.id !== productId);
-    setCartItems(updatedItems);
-  };
+  // Mock data for products
+  // const products = [
+  //   { id: 1, name: "Product 1", price: 9.99, description: "Product 1 description" },
+  //   { id: 2, name: "Product 2", price: 19.99, description: "Product 2 description" },
+  //   { id: 3, name: "Product 3", price: 29.99, description: "Product 3 description" },
+  // ];
 
   return (
     <div className="home">
       <Welcome />
-      <div className="middle_home">
-        <SearchBar handleSearch={handleSearch} />
-        <HelpLink />
-        <CartButton />
+        <div className="middle_home">
+
+        <SearchBar handleSearch={handleSearch}/>
+        <HelpLink/>
+        <CartButton/>
+        </div>
+        <MiddleBar setSelectedCategory={setSelectedCategory} />
+      <div className="gridSection">
+    
+      {/* if there's no id*/}
+      {!productId ?
+        <ProductGrid products={searchResults || props.data?.products} selectedCategory={selectedCategory}/>
+      : <ProductDetail product={product} />
+      }
+      {/* <ProductDetails product={product} /> */}
       </div>
-      <MiddleBar setSelectedCategory={setSelectedCategory} />
-      <div className="container">
-        {!productId && (
-          <ProductGrid
-            products={searchResults || props.data?.products}
-            selectedCategory={selectedCategory}
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
-          />
-        )}
-        {productId && product ? (
-          <ProductDetail product={product} />
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
-      <ContactUs />
-      <About />
-      <Footer />
-      {/* <SidebarCart cartItems={cartItems} removeFromCart={removeFromCart} /> */}
+     
+    
+      <ContactUs/>
+      <About/>
+      <Footer/>
     </div>
   );
 }

@@ -1,20 +1,33 @@
+// SidebarCart.jsx
+
 import React from "react";
 
-const SidebarCart = ({ cartItems, removeFromCart }) => {
-  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  const tax = subtotal * 0.1;
-  const total = subtotal + tax;
+const SidebarCart = ({ cartItems, removeFromCart, taxRate }) => {
+  // Function to calculate subtotal
+  const calculateSubtotal = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  // Function to calculate tax
+  const calculateTax = () => {
+    return calculateSubtotal() * taxRate;
+  };
+
+  // Function to calculate total
+  const calculateTotal = () => {
+    return calculateSubtotal() + calculateTax();
+  };
 
   return (
-    <div>
-      <h2>Sidebar Cart</h2>
-      {cartItems.length > 0 ? (
+    <aside className="sidebar">
+      <div className="sidebar-content">
+        <h2>Shopping Cart</h2>
         <table>
           <thead>
             <tr>
               <th>Product</th>
               <th>Quantity</th>
-              <th>Subtotal</th>
+              <th>Price</th>
             </tr>
           </thead>
           <tbody>
@@ -22,33 +35,28 @@ const SidebarCart = ({ cartItems, removeFromCart }) => {
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>{item.quantity}</td>
-                <td>${item.price * item.quantity}</td>
-                <td>
-                  <button onClick={() => removeFromCart(item.id)}>Remove</button>
-                </td>
+                <td>${item.price}</td>
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan="2">Subtotal</td>
-              <td>${subtotal}</td>
-            </tr>
-            <tr>
-              <td colSpan="2">Tax (10%)</td>
-              <td>${tax}</td>
-            </tr>
-            <tr>
-              <td colSpan="2">Total</td>
-              <td>${total}</td>
-            </tr>
-            </tfoot>
         </table>
-        ) : (
-        <p>Your shopping cart is empty.</p>
-        )}
+        <div className="cart-summary">
+          <div className="subtotal">
+            <span>Subtotal:</span>
+            <span>${calculateSubtotal().toFixed(2)}</span>
+          </div>
+          <div className="tax">
+            <span>Tax:</span>
+            <span>${calculateTax().toFixed(2)}</span>
+          </div>
+          <div className="total">
+            <span>Total:</span>
+            <span>${calculateTotal().toFixed(2)}</span>
+          </div>
         </div>
-        );
-        };
+      </div>
+    </aside>
+  );
+};
 
 export default SidebarCart;

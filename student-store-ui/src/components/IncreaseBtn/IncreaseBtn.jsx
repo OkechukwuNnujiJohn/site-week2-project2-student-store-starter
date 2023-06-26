@@ -1,35 +1,36 @@
 import * as React from "react"
 import "./IncreaseBtn.css"
 import { useState } from "react"
+// import { useDispatch } from "react-redux";
+// import { addToCart, removeFromCart } from "../../actions/cartActions";
 
-export default function IncreaseBtn({ product, addToCart, removeFromCart }) {
-  const [selectedIncrement, setSelectedIncrement] = useState(0);
+export default function IncreaseBtn() {
   
-  const handleIncrement = () => {
-    setSelectedIncrement(selectedIncrement + 1);
-    addToCart(product);
-  };
+const [selectedIncrement, setSelectedIncrement] = useState(0);
 
-  const handleDecrement = () => {
-    if (selectedIncrement > 0) {
-      setSelectedIncrement(selectedIncrement - 1);
-      removeFromCart(product.id);
-    }
-  };
+function selectedIncrementValue(){
+  if(selectedIncrement<=0){
+  return "";
+}else{
+  return selectedIncrement;
+}
+}
 
   return (
     <div className="incrementBtn">
       <div className="row">
-        <button onClick={handleIncrement} className="button-card">
-          <i className="material-icons">add</i>
+                <button onClick={() => setSelectedIncrement(selectedIncrement+1)}className="button-card">
+                    <i className="material-icons">add</i>
 
-        </button>
-        <button onClick={handleDecrement} className="button-card">
-          <i className="material-icons">remove</i>
+                </button>
+                <button onClick={() => setSelectedIncrement(selectedIncrement-1)}className="button-card">
+                    <i className="material-icons">remove</i>
 
-        </button>
-        </div>
-        <p>{selectedIncrement}</p>
+                </button>
+
+
+            </div>
+          <p>{selectedIncrementValue()}</p>
     </div>
   )
 }
