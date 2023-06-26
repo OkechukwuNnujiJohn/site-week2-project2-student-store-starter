@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 
 const Product = (props) => {
- 
+  
+  // const { name, price, image, id, addToCart } = props;
 
   return (
     <div className='card'>
@@ -15,8 +16,11 @@ const Product = (props) => {
     </Link>
         <div className="btnRow">
         <h3>{props.name}</h3>
-        <IncreaseBtn/>
-
+        <IncreaseBtn  
+          product={props}
+          addToCart={props.addToCart}
+          removeFromCart={props.removeFromCart}
+        />
         </div>
         <p>Price: ${props.price}</p>
         {/* Additional JSX for displaying other product details */}
