@@ -55,7 +55,7 @@ export default function Home(props) {
     
       {/* if there's no id*/}
       {!productId ?
-        <ProductGrid products={searchResults || props.data?.products} selectedCategory={selectedCategory}/>
+        <ProductGrid products={searchResults || props.data?.products} selectedCategory={selectedCategory} addToCart={props.addToCart}/>
       : <ProductDetail product={product} />
       }
       {/* <ProductDetails product={product} /> */}

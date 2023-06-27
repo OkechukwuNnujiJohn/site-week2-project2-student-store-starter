@@ -15,7 +15,7 @@ const Product = (props) => {
     </Link>
         <div className="btnRow">
         <h3>{props.name}</h3>
-        <IncreaseBtn/>
+        <IncreaseBtn addToCart={props.addToCart} name={props.name}/>
 
         </div>
         <p>Price: ${props.price}</p>

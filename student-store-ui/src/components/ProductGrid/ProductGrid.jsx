@@ -2,7 +2,7 @@ import React from "react";
 import Product from "../Product/Product";
 import "./ProductGrid.css";
 
-const ProductGrid = ({ products,selectedCategory }) => {
+const ProductGrid = ({ products,selectedCategory, addToCart }) => {
     console.log(products);
     const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
@@ -21,6 +21,7 @@ const ProductGrid = ({ products,selectedCategory }) => {
                 price={product.price}
                 image={product.image}
                 id ={product.id}
+                addToCart={addToCart}
               />
         
           </div>
