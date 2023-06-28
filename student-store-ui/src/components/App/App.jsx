@@ -11,26 +11,33 @@ export default function App() {
   const [data, setData] = useState(null); // State variable to store the fetched data
  const [cartDetails, setCartDetails] = useState({}); //store the items added to the cart and their quantities.
 
-  const addToCart = (name, quantity) => {
+  const addToCart = (name) => {
     setCartDetails((prevCartDetails) => {
       if (prevCartDetails.hasOwnProperty(name)) {
         return {
           ...prevCartDetails,
-          [name]: prevCartDetails[name] +  quantity,
+          [name]: prevCartDetails[name] +  1,
         };
       } else {
         return {
           ...prevCartDetails,
-          [name]: quantity,
+          [name]: 1,
         };
       }
     });
   }
 
-  const removeFromCart = (name, quantity) => {
+  const removeFromCart = (name) => {
     setCartDetails((prevCartDetails) => {
       if (prevCartDetails.hasOwnProperty(name)) {
-        delete  prevCartDetails[name] +  quantity-1;
+        const newCart = {
+          ...prevCartDetails,
+          [name]: prevCartDetails[name] - 1,
+        }
+        if (newCart[name] === 0) {
+          delete newCart[name]
+        }
+        return newCart;
       } else {
         return "cart is empty";
       }

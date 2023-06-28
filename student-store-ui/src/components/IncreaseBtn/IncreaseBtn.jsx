@@ -13,16 +13,14 @@ export default function IncreaseBtn({ addToCart, removeFromCart, name }) {
   }
 
   const handleAddToCart = () => {
-    addToCart(name, selectedIncrement);
-    setSelectedIncrement(0);
+    addToCart(name);
+    // setSelectedIncrement(0);
   };
 
   const handleRemoveFromCart = () => {
-    removeFromCart(name, selectedIncrement);
-    setSelectedIncrement(selectedIncrement);
-    if (selectedIncrement > 0) {
-      setSelectedIncrement(selectedIncrement - 1);
-    }
+    removeFromCart(name);
+    // setSelectedIncrement(selectedIncrement);
+    
   };
 
   return (
@@ -31,22 +29,31 @@ export default function IncreaseBtn({ addToCart, removeFromCart, name }) {
         <button
           onClick={() => {
             setSelectedIncrement(selectedIncrement + 1);
+            handleAddToCart();
           }}
           className="button-card"
         >
           <i className="material-icons">add</i>
         </button>
         <button
-          onClick= {handleRemoveFromCart}
+          onClick= {() => {
+            if (selectedIncrement > 0) {
+              setSelectedIncrement(selectedIncrement - 1);
+              handleRemoveFromCart();
+            }
+            else{
+              return "Add item to cart"
+            }
+          }}
           className="button-card"
         >
           <i className="material-icons">remove</i>
         </button>
       </div>
       <p>{selectedIncrementValue()}</p>
-      <button onClick={handleAddToCart} className="add-to-cart-button">
+      {/* <button onClick={handleAddToCart} className="add-to-cart-button">
         Add to Cart
-      </button>
+      </button> */}
 
       {/* <button onClick={handleRemoveFromCart} className="remove-from-cart-button">
         RemoveCart
