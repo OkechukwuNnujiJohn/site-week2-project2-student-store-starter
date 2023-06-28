@@ -7,7 +7,8 @@ import "./Sidebar.css";
 export default function Sidebar({ cart = {}, data }) {
   const [isOpen, setIsOpen] = useState(false);
 
-//   console.log("cart:", cart);
+  console.log("cart:", cart);
+  console.log("data", data, Array.isArray(data))
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -63,10 +64,10 @@ export default function Sidebar({ cart = {}, data }) {
             </tr>
           </thead>
           <tbody>
-          {data && Array.isArray(data)&&  // Check if data is available before rendering
+          {data &&// Check if data is available before rendering
           Object.entries(cart).map(([product, quantity]) => {
             // Assuming price is available from your data source
-            const item = data.find((item) => item.name === product);
+            const item = data.products.find((item) => item.name === product);
             const price = item ? item.price : 0;
             return (
               <tr key={product}>
@@ -85,7 +86,7 @@ export default function Sidebar({ cart = {}, data }) {
                 {calculateTax(
                   Object.entries(cart).reduce(
                     (subtotal, [product, quantity]) =>
-                      subtotal + calculateSubtotal(cart[product], data.find((item) => item.name === product).price),
+                      subtotal + calculateSubtotal(cart[product], data.products.find((item) => item.name === product).price),
                     0
                   )
                 )}
@@ -97,13 +98,13 @@ export default function Sidebar({ cart = {}, data }) {
                 {calculateTotal(
                   Object.entries(cart).reduce(
                     (subtotal, [product, quantity]) =>
-                      subtotal + calculateSubtotal(cart[product], data.find((item) => item.name === product).price),
+                      subtotal + calculateSubtotal(cart[product], data.products.find((item) => item.name === product).price),
                     0
                   ),
                   calculateTax(
                     Object.entries(cart).reduce(
                       (subtotal, [product,quantity]) =>
-                        subtotal + calculateSubtotal(cart[product], data.find((item) => item.name === product).price),
+                        subtotal + calculateSubtotal(cart[product], data.products.find((item) => item.name === product).price),
                       0
                     )
                   )

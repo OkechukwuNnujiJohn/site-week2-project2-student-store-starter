@@ -7,9 +7,9 @@ import "./App.css"
 
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); //track whther a sidebar is open or closed
   const [data, setData] = useState(null); // State variable to store the fetched data
- const [cartDetails, setCartDetails] = useState({});
+ const [cartDetails, setCartDetails] = useState({}); //store the items added to the cart and their quantities.
 
   const addToCart = (name, quantity) => {
     setCartDetails((prevCartDetails) => {
@@ -23,6 +23,16 @@ export default function App() {
           ...prevCartDetails,
           [name]: quantity,
         };
+      }
+    });
+  }
+
+  const removeFromCart = (name, quantity) => {
+    setCartDetails((prevCartDetails) => {
+      if (prevCartDetails.hasOwnProperty(name)) {
+        delete  prevCartDetails[name] +  quantity-1;
+      } else {
+        return "cart is empty";
       }
     });
   }
@@ -54,7 +64,7 @@ export default function App() {
           <Navbar />
           <Sidebar cart={cartDetails} data={data}/>
           <Routes>
-          <Route exact path="/" element={<Home data={data} addToCart={addToCart}/>} />
+          <Route exact path="/" element={<Home data={data} addToCart={addToCart} removeFromCart={removeFromCart}/>} />
           <Route path="/products/:id" element={<Home data={data} />} />
           {/* Add other routes as needed */}
         </Routes>
