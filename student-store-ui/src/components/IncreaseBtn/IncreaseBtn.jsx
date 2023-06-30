@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./IncreaseBtn.css";
 
-export default function IncreaseBtn({ addToCart, removeFromCart, name }) {
+export default function IncreaseBtn({ addToCart, removeFromCart, name, price }) {
   const [selectedIncrement, setSelectedIncrement] = useState(0);
 
   function selectedIncrementValue() {
@@ -13,7 +13,7 @@ export default function IncreaseBtn({ addToCart, removeFromCart, name }) {
   }
 
   const handleAddToCart = () => {
-    addToCart(name);
+    addToCart(name, price);
     // setSelectedIncrement(0);
   };
 

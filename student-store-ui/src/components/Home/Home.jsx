@@ -20,11 +20,11 @@ export default function Home(props) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchResults, setSearchResults] = useState(null);
 
-  console.log(props);
+  // console.log(props);
   const productId = parseInt(useParams().id);
-  console.log("id: ",typeof productId);
+  // console.log("id: ",typeof productId);
   const product = props.data?.products.find((product) => product.id === productId )
-  console.log("product",product)
+  // console.log("product",product)
   // Handle search
   const handleSearch = (searchQuery) => {
     // Filter products based on the search query

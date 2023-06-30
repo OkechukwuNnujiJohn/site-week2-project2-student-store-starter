@@ -3,7 +3,7 @@ import Product from "../Product/Product";
 import "./ProductGrid.css";
 
 const ProductGrid = ({ products,selectedCategory, addToCart, removeFromCart }) => {
-    console.log(products);
+    // console.log(products);
     const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
     : products;

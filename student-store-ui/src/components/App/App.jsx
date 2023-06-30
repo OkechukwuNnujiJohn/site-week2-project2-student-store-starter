@@ -9,19 +9,33 @@ import "./App.css"
 export default function App() {
   const [isOpen, setIsOpen] = useState(false); //track whther a sidebar is open or closed
   const [data, setData] = useState(null); // State variable to store the fetched data
- const [cartDetails, setCartDetails] = useState({}); //store the items added to the cart and their quantities.
+  const [cartDetails, setCartDetails] = useState({}); //store the items added to the cart and their quantities.
+  const [cartTotal, setCartTotal] = useState(0)
 
-  const addToCart = (name) => {
+  const addToCart = (name, price) => {
+    //increment the cummulative subTotal by adding price
+    setCartTotal(cartTotal + price)
+
     setCartDetails((prevCartDetails) => {
       if (prevCartDetails.hasOwnProperty(name)) {
+        console.log("types when adding: ", typeof prevCartDetails[name].price, typeof prevCartDetails[name].subTotal)
         return {
           ...prevCartDetails,
-          [name]: prevCartDetails[name] +  1,
+          [name]: {
+            ...prevCartDetails[name],
+            quantity: prevCartDetails[name].quantity + 1,
+            subTotal: prevCartDetails[name].subTotal + price
+          },
         };
-      } else {
+      }
+      else {
         return {
           ...prevCartDetails,
-          [name]: 1,
+          [name]: {
+            quantity: 1,
+            price: price,
+            subTotal: price
+          },
         };
       }
     });
@@ -30,22 +44,30 @@ export default function App() {
   const removeFromCart = (name) => {
     setCartDetails((prevCartDetails) => {
       if (prevCartDetails.hasOwnProperty(name)) {
+        //decrement our cummulative subTotal by the value of price
         const newCart = {
           ...prevCartDetails,
-          [name]: prevCartDetails[name] - 1,
+          [name]: {
+            ...prevCartDetails[name],
+            quantity: prevCartDetails[name].quantity - 1,
+            subTotal: prevCartDetails[name].subTotal - prevCartDetails[name].price
+          },
         }
-        if (newCart[name] === 0) {
+        if (newCart[name].quantity === 0) {
           delete newCart[name]
         }
+        if (Object.keys(prevCartDetails).length === 0) {
+          setCartTotal(0);
+        } else {
+          setCartTotal(cartTotal - prevCartDetails[name].price)
+        }
         return newCart;
-      } else {
-        return "cart is empty";
+      }
+      else {
+        return prevCartDetails;
       }
     });
   }
-  //   setCartDetails({...cartDetails, [name] : 1})
-  //   console.log("addToCart", {...cartDetails, [name] : 1})
-  // }
 
   const handleOnToggle = (newState) => {
     setIsOpen(newState);
@@ -69,12 +91,11 @@ export default function App() {
       <Router>
         <main>
           <Navbar />
-          <Sidebar cart={cartDetails} data={data}/>
+          <Sidebar cart={cartDetails} cartTotal={cartTotal} data={data}  />
           <Routes>
-          <Route exact path="/" element={<Home data={data} addToCart={addToCart} removeFromCart={removeFromCart}/>} />
-          <Route path="/products/:id" element={<Home data={data} />} />
-          {/* Add other routes as needed */}
-        </Routes>
+            <Route exact path="/" element={<Home data={data} addToCart={addToCart} removeFromCart={removeFromCart} />} />
+            <Route path="/products/:id" element={<Home data={data} />} />
+          </Routes>
         </main>
       </Router>
     </div>

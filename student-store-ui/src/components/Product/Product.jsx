@@ -15,7 +15,7 @@ const Product = (props) => {
     </Link>
         <div className="btnRow">
         <h3>{props.name}</h3>
-        <IncreaseBtn addToCart={props.addToCart} removeFromCart={props.removeFromCart} name={props.name}/>
+        <IncreaseBtn addToCart={props.addToCart} removeFromCart={props.removeFromCart} name={props.name} price ={props.price}/>
 
         </div>
         <p>Price: ${props.price}</p>
