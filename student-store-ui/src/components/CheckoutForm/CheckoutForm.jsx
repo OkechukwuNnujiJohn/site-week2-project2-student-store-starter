@@ -8,9 +8,11 @@ function CheckoutForm({ cart, cartTotal }) {
     const [email, setEmail] = useState('');
 
     const handleClick = () => {
-        setProceedBtn(true);
         if (email.includes('@') && name.trim() !== '') {
             setShowReceipt(true);
+        }
+        else{
+            <p>check your above details</p>
         }
     };
 
@@ -24,7 +26,7 @@ function CheckoutForm({ cart, cartTotal }) {
 
     return (
         <div>
-            <button onClick={handleClick}>Proceed to Checkout</button>
+            <button onClick={()=>setProceedBtn(true)}>Proceed to Checkout</button>
             {proceedBtn && (
                 <div>
                     <div className="input-field">
@@ -64,7 +66,7 @@ function CheckoutForm({ cart, cartTotal }) {
                             </label>
                         </div>
                     </div>
-                    <button onClick={() => setShowReceipt(true)}>Checkout</button>
+                    <button onClick={(handleClick)}>Checkout</button>
                 </div>
             )}
             {showReceipt && (
